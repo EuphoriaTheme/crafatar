@@ -9,6 +9,9 @@
   --docs-accent: #38bdf8;
   --docs-accent-rgb: 56, 189, 248;
   --docs-shadow: 0 22px 52px rgba(2, 6, 23, 0.45);
+  --scrollbar-track: rgba(4, 9, 20, 0.95);
+  --scrollbar-thumb: rgba(var(--docs-accent-rgb), 0.45);
+  --scrollbar-thumb-hover: rgba(var(--docs-accent-rgb), 0.68);
 }
 
 * {
@@ -17,6 +20,31 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border: 2px solid var(--scrollbar-track);
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
 }
 
 body {
