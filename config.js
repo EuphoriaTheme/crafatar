@@ -1,19 +1,65 @@
+require("dotenv").config();
+
+function envInt(name, fallback) {
+  var value = parseInt(process.env[name], 10);
+  return Number.isNaN(value) ? fallback : value;
+}
+
+function parseRedisUrl(value) {
+  var raw = (value || "").trim();
+  if (!raw) {
+    return {
+      url: "redis://localhost:6379",
+      enabled: true,
+      warning: null
+    };
+  }
+
+  try {
+    var parsed = new URL(raw);
+    if (parsed.protocol !== "redis:" && parsed.protocol !== "rediss:") {
+      return {
+        url: null,
+        enabled: false,
+        warning: "REDIS_URL must use redis:// or rediss://. Redis cache will be disabled."
+      };
+    }
+  } catch (err) {
+    return {
+      url: null,
+      enabled: false,
+      warning: "REDIS_URL is not a valid URL. Redis cache will be disabled."
+    };
+  }
+
+  return {
+    url: raw,
+    enabled: true,
+    warning: null
+  };
+}
+
+var redisConfig = parseRedisUrl(process.env.REDIS_URL);
+if (redisConfig.warning) {
+  console.warn(redisConfig.warning);
+}
+
 var config = {
   avatars: {
     // for avatars
-    min_size: parseInt(process.env.AVATAR_MIN) || 1,
+    min_size: envInt("AVATAR_MIN", 1),
     // for avatars; large values might lead to slow response time or DoS
-    max_size: parseInt(process.env.AVATAR_MAX) || 512,
+    max_size: envInt("AVATAR_MAX", 512),
     // for avatars; size to be used when no size given
-    default_size: parseInt(process.env.AVATAR_DEFAULT) ||  160
+    default_size: envInt("AVATAR_DEFAULT", 160)
   },
   renders: {
     // for 3D rendered skins
-    min_scale: parseInt(process.env.RENDER_MIN) || 1,
+    min_scale: envInt("RENDER_MIN", 1),
     // for 3D rendered skins; large values might lead to slow response time or DoS
-    max_scale: parseInt(process.env.RENDER_MAX) || 10,
+    max_scale: envInt("RENDER_MAX", 10),
     // for 3D rendered skins; scale to be used when no scale given
-    default_scale: parseInt(process.env.RENDER_DEFAULT) || 6
+    default_scale: envInt("RENDER_DEFAULT", 6)
   },
   directories: {
     // directory where faces are kept. must have trailing "/"
@@ -30,31 +76,40 @@ var config = {
   caching: {
     // seconds until we will check if user's skin changed.
     // Should be > 60 to comply with Mojang's rate limit
-    local: parseInt(process.env.CACHE_LOCAL) || 1200,
+    local: envInt("CACHE_LOCAL", 1200),
     // seconds until browser will request image again
-    browser: parseInt(process.env.CACHE_BROWSER) || 3600,
+    browser: envInt("CACHE_BROWSER", 3600),
     // If true, redis is flushed on start.
     // Use this to avoid issues when you have a persistent redis database but an ephemeral storage
     ephemeral: process.env.EPHEMERAL_STORAGE === "true",
     // Used for information on the front page
-    cloudflare: process.env.CLOUDFLARE === "true"
+    cloudflare: process.env.CLOUDFLARE === "true",
+    // If true, periodically delete stale redis entries and old image files
+    retention_enabled: process.env.RETENTION_ENABLED !== "false",
+    // Maximum age in days for cache/image retention
+    retention_days: envInt("RETENTION_DAYS", 30),
+    // Interval in hours between cleanup runs
+    retention_interval_hours: envInt("RETENTION_INTERVAL_HOURS", 24)
   },
   // URL of your redis server
-  redis: process.env.REDIS_URL || 'redis://localhost:6379',
+  redis: redisConfig.url,
+  redis_enabled: redisConfig.enabled,
   server: {
     // port to listen on
-    port: parseInt(process.env.PORT) || 3000,
+    port: envInt("PORT", 3000),
     // IP address to listen on
     bind: process.env.BIND || "0.0.0.0",
     // ms until connection to Mojang is dropped
-    http_timeout: parseInt(process.env.EXTERNAL_HTTP_TIMEOUT) || 2000,
+    http_timeout: envInt("EXTERNAL_HTTP_TIMEOUT", 2000),
     // enables logging.debug & editing index page
     debug_enabled: process.env.DEBUG === "true",
     // set to false if you use an external logger that provides timestamps,
     log_time: process.env.LOG_TIME === "true",
     // rate limit per second for outgoing requests to the Mojang session server
     // requests exceeding this limit are skipped and considered failed
-    sessions_rate_limit: parseInt(process.env.SESSIONS_RATE_LIMIT)
+    sessions_rate_limit: envInt("SESSIONS_RATE_LIMIT", NaN),
+    // public base URL used in docs/examples (e.g. https://crafatar.com)
+    external_url: (process.env.EXTERNAL_URL || "").trim()
   },
   sponsor: {
     sidebar: process.env.SPONSOR_SIDE,

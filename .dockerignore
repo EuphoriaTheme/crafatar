@@ -4,3 +4,4 @@ Dockerfile
 LICENSE
 images/
 node_modules/
+test/

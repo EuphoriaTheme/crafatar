@@ -42,19 +42,71 @@ docker run --net crafatar -d --name redis redis
 docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_URL=redis://redis -p 3000:3000 crafatar/crafatar
 ```
 
+By default, Docker builds now skip tests for faster production builds. To run tests during build:
+
+```sh
+docker build --build-arg RUN_TESTS=true -t crafatar .
+```
+
 ## Manual
 
-- Install [nodejs](https://nodejs.org/) 12 (LTS)
+- Install [nodejs](https://nodejs.org/) 24 (LTS)
 - Install `redis-server`
 - Run `npm install`  
   If that fails, it's likely because because of `node-canvas` dependencies. Follow [this guide](https://github.com/Automattic/node-canvas/wiki#installation-guides) to install them.
+- Copy `.env.example` to `.env` and adjust values if needed
 - Run `npm start`
 
 Crafatar is now available at http://0.0.0.0:3000.
 
-## Configration / Environment variables
+## Configuration / Environment variables
 
-See the `config.js` file.
+Configuration is loaded from `.env` automatically (via `dotenv`) and falls back to defaults from `config.js`.
+
+### Quick setup
+
+```sh
+cp .env.example .env
+```
+
+### Variables explained
+
+- `AVATAR_MIN`, `AVATAR_MAX`, `AVATAR_DEFAULT`: avatar size bounds and default size in pixels.
+- `RENDER_MIN`, `RENDER_MAX`, `RENDER_DEFAULT`: 3D render scale bounds and default scale.
+- `CACHE_LOCAL`: how long cached profile/skin metadata is considered fresh (seconds).
+- `CACHE_BROWSER`: HTTP cache max-age sent to clients (seconds).
+- `RETENTION_ENABLED`: when `true`, periodically clears stale Redis keys and old image files.
+- `RETENTION_DAYS`: maximum age (in days) before cached data/images are deleted.
+- `RETENTION_INTERVAL_HOURS`: how often the cleanup job runs.
+- `EPHEMERAL_STORAGE`: when `true`, Redis is flushed on startup.
+- `CLOUDFLARE`: toggles Cloudflare status hints on the index page.
+- `REDIS_URL`: Redis connection string.
+  - Example with password: `redis://:password@host:port`
+  - Example with TLS: `rediss://:password@host:port`
+  - Only `redis://` and `rediss://` are accepted. If another scheme is provided (for example `http://`), Redis caching is disabled at startup.
+  - In containerized setups (e.g. Pterodactyl), avoid `localhost` unless Redis runs in the same container.
+- `PORT`, `BIND`: server listen port and bind address.
+- `EXTERNAL_HTTP_TIMEOUT`: timeout for Mojang/external HTTP requests in milliseconds.
+- `DEBUG`: when `true`, enables debug behavior and extra error details.
+- `LOG_TIME`: whether log timestamps are enabled.
+- `SESSIONS_RATE_LIMIT`: outgoing Mojang session requests allowed per second; empty disables this limiter.
+- `FACE_DIR`, `HELM_DIR`, `SKIN_DIR`, `RENDER_DIR`, `CAPE_DIR`: optional custom storage directories (must end with `/`).
+- `SPONSOR_SIDE`, `SPONSOR_TOP_RIGHT`: optional sponsor strings shown on the homepage.
+
+## Pterodactyl notes
+
+- Set `BIND=0.0.0.0` when running behind panel/reverse proxies.
+- Use an external Redis service or separate Redis node and point `REDIS_URL` to it.
+- `CLOUDFLARE=true` is appropriate when traffic is proxied through Cloudflare.
+
+## Security maintenance
+
+```sh
+npm run audit
+npm run audit:fix
+```
+
+These commands use lockfile-based auditing and safe remediation where possible.
 
 # Operational notes
 

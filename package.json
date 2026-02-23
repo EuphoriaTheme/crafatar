@@ -1,25 +1,31 @@
 {
   "name": "crafatar",
-  "version": "2.1.5",
+  "version": "2.2.0",
   "private": true,
   "scripts": {
     "start": "node www.js",
-    "test": "mocha"
+    "test": "mocha",
+    "audit": "npm audit --package-lock-only",
+    "audit:fix": "npm audit fix --package-lock-only"
   },
   "engines": {
-    "node": "12.16.1"
+    "node": ">=24.0.0"
   },
   "dependencies": {
-    "@randy.tarampi/lwip": "^1.3.1",
-    "canvas": "^2.6.1",
-    "crc": "^3.8.0",
-    "ejs": "^3.1.5",
-    "mime": "^2.4.6",
-    "redis": "^3.0.2",
-    "request": "^2.88.2",
+    "canvas": "^3.2.1",
+    "crc": "^4.3.2",
+    "dotenv": "^16.6.1",
+    "ejs": "^3.1.10",
+    "mime": "^4.1.0",
+    "pngjs": "^7.0.0",
+    "redis": "^5.11.0",
     "toobusy-js": "^0.5.1"
   },
   "devDependencies": {
-    "mocha": "^7.2.0"
+    "mocha": "^11.7.2"
+  },
+  "overrides": {
+    "minimatch": "^10.2.1",
+    "diff": "^8.0.2"
   }
 }

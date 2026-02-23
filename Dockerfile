@@ -14,7 +14,8 @@ RUN mkdir -p images/faces images/helms images/skins images/renders images/capes
 
 ARG VERBOSE_TEST
 ARG DEBUG
-RUN nohup redis-server & npm test
+ARG RUN_TESTS=false
+RUN if [ "$RUN_TESTS" = "true" ]; then nohup redis-server & npm test; fi
 
 
 FROM node:12-alpine

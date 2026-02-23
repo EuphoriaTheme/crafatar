@@ -9,7 +9,7 @@ if (process.env.VERBOSE_TEST !== "true") {
 
 var networking = require("../lib/networking");
 var helpers = require("../lib/helpers");
-var request = require("request");
+var request = require("../lib/http-client");
 var config = require("../config");
 var server = require("../lib/server");
 var assert = require("assert");
