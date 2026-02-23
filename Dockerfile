@@ -1,4 +1,4 @@
-FROM node:12-alpine AS builder
+FROM node:24-alpine AS builder
 
 RUN apk --no-cache add git python3 build-base redis cairo-dev pango-dev jpeg-dev giflib-dev
 
@@ -7,7 +7,7 @@ USER app
 
 COPY --chown=app package.json package-lock.json /home/app/crafatar/
 WORKDIR /home/app/crafatar
-RUN npm install
+RUN npm ci
 
 COPY --chown=app . .
 RUN mkdir -p images/faces images/helms images/skins images/renders images/capes
@@ -16,9 +16,10 @@ ARG VERBOSE_TEST
 ARG DEBUG
 ARG RUN_TESTS=false
 RUN if [ "$RUN_TESTS" = "true" ]; then nohup redis-server & npm test; fi
+RUN npm prune --omit=dev
 
 
-FROM node:12-alpine
+FROM node:24-alpine
 RUN apk --no-cache add cairo pango jpeg giflib
 RUN adduser -D app
 USER app

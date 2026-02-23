@@ -1,36 +1,36 @@
 # Crafatar
 <img alt="logo" src="lib/public/logo.png" align="right" width="128px" height="128px">
 
-[![travis](https://img.shields.io/travis/crafatar/crafatar/master.svg?style=flat-square)](https://travis-ci.org/crafatar/crafatar/) [![Coverage Status](https://img.shields.io/coveralls/crafatar/crafatar.svg?style=flat-square)](https://coveralls.io/r/crafatar/crafatar) [![Code Climate](https://img.shields.io/codeclimate/github/crafatar/crafatar.svg?style=flat-square)](https://codeclimate.com/github/crafatar/crafatar) [![dependency status](https://img.shields.io/david/crafatar/crafatar.svg?style=flat-square)](https://david-dm.org/crafatar/crafatar) [![devDependency status](https://img.shields.io/david/dev/crafatar/crafatar.svg?style=flat-square)](https://david-dm.org/crafatar/crafatar#info=devDependencies) [![docs status](https://inch-ci.org/github/crafatar/crafatar.svg?branch=master&style=flat-square)](https://inch-ci.org/github/crafatar/crafatar)
+[![travis](https://img.shields.io/travis/EuphoriaTheme/crafatar/master.svg?style=flat-square)](https://travis-ci.org/EuphoriaTheme/crafatar/) [![Coverage Status](https://img.shields.io/coveralls/EuphoriaTheme/crafatar.svg?style=flat-square)](https://coveralls.io/r/EuphoriaTheme/crafatar) [![Code Climate](https://img.shields.io/codeclimate/github/EuphoriaTheme/crafatar.svg?style=flat-square)](https://codeclimate.com/github/EuphoriaTheme/crafatar) [![dependency status](https://img.shields.io/david/EuphoriaTheme/crafatar.svg?style=flat-square)](https://david-dm.org/EuphoriaTheme/crafatar) [![devDependency status](https://img.shields.io/david/dev/EuphoriaTheme/crafatar.svg?style=flat-square)](https://david-dm.org/EuphoriaTheme/crafatar#info=devDependencies) [![docs status](https://inch-ci.org/github/EuphoriaTheme/crafatar.svg?branch=master&style=flat-square)](https://inch-ci.org/github/EuphoriaTheme/crafatar)
 
-<a href="https://crafatar.com">Crafatar</a> serves Minecraft avatars based on the skin for use in external applications.
+<a href="https://crafatar.euphoriadevelopment.uk/">Crafatar</a> serves Minecraft avatars based on the skin for use in external applications.
 Inspired by <a href="https://gravatar.com">Gravatar</a> (hence the name) and <a href="https://minotar.net">Minotar</a>.
 
-Image manipulation is done by [lwip](https://github.com/EyalAr/lwip). 3D renders are created with [node-canvas](https://github.com/Automattic/node-canvas) / [cairo](http://cairographics.org/).
+Image manipulation is done with [pngjs](https://github.com/pngjs/pngjs) (pure JavaScript PNG processing). 3D renders are created with [node-canvas](https://github.com/Automattic/node-canvas) / [cairo](http://cairographics.org/).
 
 # Contributions welcome!
 
-There are usually a few [open issues](https://github.com/crafatar/crafatar/issues).  
+There are usually a few [open issues](https://github.com/EuphoriaTheme/crafatar/issues).  
 We welcome any opinions or advice in discussions as well as pull requests.  
-Issues tagged with [![help wanted](https://i.imgur.com/kkozGKY.png "help wanted")](https://github.com/crafatar/crafatar/labels/help%20wanted) show where we could especially need your help!
+Issues tagged with [![help wanted](https://i.imgur.com/kkozGKY.png "help wanted")](https://github.com/EuphoriaTheme/crafatar/labels/help%20wanted) show where we could especially need your help!
 
 # Examples
 
 | | | | |
 | :---: | :---: | :---: | :---: |
-| ![jomo's avatar](https://crafatar.com/avatars/ae795aa86327408e92ab25c8a59f3ba1?size=128) | ![Jake_0's avatar](https://crafatar.com/avatars/2d5aa9cdaeb049189930461fc9b91cc5?size=128) | ![Notch's avatar](https://crafatar.com/avatars/069a79f444e94726a5befca90e38aaf5?size=128) | ![sk89q's avatar](https://crafatar.com/avatars/0ea8eca3dbf647cc9d1ac64551ca975c?size=128) | ![md_5's avatar](https://crafatar.com/avatars/af74a02d19cb445bb07f6866a861f783?size=128) |
-| ![jomo's 3d head](https://crafatar.com/renders/head/ae795aa86327408e92ab25c8a59f3ba1?scale=6) | ![Jake_0's 3d head](https://crafatar.com/renders/head/2d5aa9cdaeb049189930461fc9b91cc5?scale=6) | ![Notch's 3d head](https://crafatar.com/renders/head/069a79f444e94726a5befca90e38aaf5?scale=6) | ![sk89q's 3d head](https://crafatar.com/renders/head/0ea8eca3dbf647cc9d1ac64551ca975c?scale=6) | ![md_5's 3d head](https://crafatar.com/renders/head/af74a02d19cb445bb07f6866a861f783?scale=6) |
-| ![jomo's 3d body](https://crafatar.com/renders/body/ae795aa86327408e92ab25c8a59f3ba1?scale=6) | ![Jake_0's 3d body](https://crafatar.com/renders/body/2d5aa9cdaeb049189930461fc9b91cc5?scale=6) | ![Notch's 3d body](https://crafatar.com/renders/body/069a79f444e94726a5befca90e38aaf5?scale=6) | ![sk89q's 3d body](https://crafatar.com/renders/body/0ea8eca3dbf647cc9d1ac64551ca975c?scale=6) | ![md_5's 3d body](https://crafatar.com/renders/body/af74a02d19cb445bb07f6866a861f783?scale=6) |
-| ![jomo's skin](https://crafatar.com/skins/ae795aa86327408e92ab25c8a59f3ba1) | ![Jake_0's skin](https://crafatar.com/skins/2d5aa9cdaeb049189930461fc9b91cc5) | ![Notch's skin](https://crafatar.com/skins/069a79f444e94726a5befca90e38aaf5) | ![sk89q's skin](https://crafatar.com/skins/0ea8eca3dbf647cc9d1ac64551ca975c) | ![md_5's skin](https://crafatar.com/skins/af74a02d19cb445bb07f6866a861f783) |
+| ![jomo's avatar](https://crafatar.euphoriadevelopment.uk/avatars/ae795aa86327408e92ab25c8a59f3ba1?size=128) | ![Jake_0's avatar](https://crafatar.euphoriadevelopment.uk/avatars/2d5aa9cdaeb049189930461fc9b91cc5?size=128) | ![Notch's avatar](https://crafatar.euphoriadevelopment.uk/avatars/069a79f444e94726a5befca90e38aaf5?size=128) | ![sk89q's avatar](https://crafatar.euphoriadevelopment.uk/avatars/0ea8eca3dbf647cc9d1ac64551ca975c?size=128) | ![md_5's avatar](https://crafatar.euphoriadevelopment.uk/avatars/af74a02d19cb445bb07f6866a861f783?size=128) |
+| ![jomo's 3d head](https://crafatar.euphoriadevelopment.uk/renders/head/ae795aa86327408e92ab25c8a59f3ba1?scale=6) | ![Jake_0's 3d head](https://crafatar.euphoriadevelopment.uk/renders/head/2d5aa9cdaeb049189930461fc9b91cc5?scale=6) | ![Notch's 3d head](https://crafatar.euphoriadevelopment.uk/renders/head/069a79f444e94726a5befca90e38aaf5?scale=6) | ![sk89q's 3d head](https://crafatar.euphoriadevelopment.uk/renders/head/0ea8eca3dbf647cc9d1ac64551ca975c?scale=6) | ![md_5's 3d head](https://crafatar.euphoriadevelopment.uk/renders/head/af74a02d19cb445bb07f6866a861f783?scale=6) |
+| ![jomo's 3d body](https://crafatar.euphoriadevelopment.uk/renders/body/ae795aa86327408e92ab25c8a59f3ba1?scale=6) | ![Jake_0's 3d body](https://crafatar.euphoriadevelopment.uk/renders/body/2d5aa9cdaeb049189930461fc9b91cc5?scale=6) | ![Notch's 3d body](https://crafatar.euphoriadevelopment.uk/renders/body/069a79f444e94726a5befca90e38aaf5?scale=6) | ![sk89q's 3d body](https://crafatar.euphoriadevelopment.uk/renders/body/0ea8eca3dbf647cc9d1ac64551ca975c?scale=6) | ![md_5's 3d body](https://crafatar.euphoriadevelopment.uk/renders/body/af74a02d19cb445bb07f6866a861f783?scale=6) |
+| ![jomo's skin](https://crafatar.euphoriadevelopment.uk/skins/ae795aa86327408e92ab25c8a59f3ba1) | ![Jake_0's skin](https://crafatar.euphoriadevelopment.uk/skins/2d5aa9cdaeb049189930461fc9b91cc5) | ![Notch's skin](https://crafatar.euphoriadevelopment.uk/skins/069a79f444e94726a5befca90e38aaf5) | ![sk89q's skin](https://crafatar.euphoriadevelopment.uk/skins/0ea8eca3dbf647cc9d1ac64551ca975c) | ![md_5's skin](https://crafatar.euphoriadevelopment.uk/skins/af74a02d19cb445bb07f6866a861f783) |
 
 ## Usage / Documentation
 
-Please [visit the website](https://crafatar.com) for details.
+Please [visit the website](https://crafatar.euphoriadevelopment.uk/) for details.
 
 ## Contact
 
-* You can [follow](https://twitter.com/crafatar) us on twitter
-* Open an [issue](https://github.com/crafatar/crafatar/issues/) on GitHub
+* Join our [Discord](https://discord.euphoriadevelopment.uk/)
+* Open an [issue](https://github.com/EuphoriaTheme/crafatar/issues/) on GitHub
 
 # Installation
 
@@ -39,7 +39,7 @@ Please [visit the website](https://crafatar.com) for details.
 ```sh
 docker network create crafatar
 docker run --net crafatar -d --name redis redis
-docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_URL=redis://redis -p 3000:3000 crafatar/crafatar
+docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_URL=redis://redis -p 3000:3000 ghcr.io/<owner>/<repo>:latest
 ```
 
 By default, Docker builds now skip tests for faster production builds. To run tests during build:
@@ -47,6 +47,22 @@ By default, Docker builds now skip tests for faster production builds. To run te
 ```sh
 docker build --build-arg RUN_TESTS=true -t crafatar .
 ```
+
+## GitHub Actions (workers)
+
+This repository includes workers in `.github/workflows`:
+
+- `ci.yml`: runs tests on pushes and pull requests.
+- `release.yml`: on tag push (for example `v2.3.0`) it builds/pushes Docker image to `ghcr.io/<owner>/<repo>` and creates a GitHub Release.
+
+Create a release:
+
+```sh
+git tag v2.3.0
+git push origin v2.3.0
+```
+
+The release worker will publish the image tag and generate release notes automatically.
 
 ## Manual
 
@@ -86,11 +102,18 @@ cp .env.example .env
   - Only `redis://` and `rediss://` are accepted. If another scheme is provided (for example `http://`), Redis caching is disabled at startup.
   - In containerized setups (e.g. Pterodactyl), avoid `localhost` unless Redis runs in the same container.
 - `PORT`, `BIND`: server listen port and bind address.
+- `EXTERNAL_URL`: optional public base URL used in homepage/docs examples (e.g. `https://crafatar.example.com`). If empty, the URL is inferred from request/forwarded headers.
 - `EXTERNAL_HTTP_TIMEOUT`: timeout for Mojang/external HTTP requests in milliseconds.
 - `DEBUG`: when `true`, enables debug behavior and extra error details.
 - `LOG_TIME`: whether log timestamps are enabled.
 - `SESSIONS_RATE_LIMIT`: outgoing Mojang session requests allowed per second; empty disables this limiter.
 - `FACE_DIR`, `HELM_DIR`, `SKIN_DIR`, `RENDER_DIR`, `CAPE_DIR`: optional custom storage directories (must end with `/`).
+
+### Redis behavior notes
+
+- Redis is used as a cache layer; image generation still works when Redis is unavailable.
+- Invalid `REDIS_URL` values (wrong protocol/format) disable Redis caching at startup.
+- A broken Redis endpoint will reduce cache efficiency and may increase upstream Mojang requests.
 
 ## Pterodactyl notes
 
