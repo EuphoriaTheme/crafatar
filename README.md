@@ -91,7 +91,6 @@ cp .env.example .env
 - `LOG_TIME`: whether log timestamps are enabled.
 - `SESSIONS_RATE_LIMIT`: outgoing Mojang session requests allowed per second; empty disables this limiter.
 - `FACE_DIR`, `HELM_DIR`, `SKIN_DIR`, `RENDER_DIR`, `CAPE_DIR`: optional custom storage directories (must end with `/`).
-- `SPONSOR_SIDE`, `SPONSOR_TOP_RIGHT`: optional sponsor strings shown on the homepage.
 
 ## Pterodactyl notes
 

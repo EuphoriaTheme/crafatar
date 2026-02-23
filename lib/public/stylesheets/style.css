@@ -68,48 +68,6 @@ a.forkme:hover {
   background: rgba(var(--docs-accent-rgb), 0.3);
 }
 
-a.sponsor {
-  position: fixed;
-  width: 48px;
-  height: 48px;
-  right: 0;
-  top: 0;
-  margin: 5px;
-}
-
-.sponsor img {
-  width: 100%;
-  height: 100%;
-}
-
-a.sponsor-item {
-  color: #e6f2ff !important;
-  font-weight: 500;
-  background: rgba(var(--docs-accent-rgb), 0.16);
-  border-color: rgba(var(--docs-accent-rgb), 0.45);
-}
-
-.sponsor-item:hover {
-  background: rgba(var(--docs-accent-rgb), 0.24) !important;
-}
-
-#quote-wrapper {
-  line-height: 9.5em;
-}
-
-#quote {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: initial;
-  background: rgba(8, 14, 27, 0.86);
-  border-color: var(--docs-border);
-  color: var(--docs-text);
-}
-
-#quote:hover {
-  background: rgba(var(--docs-accent-rgb), 0.18);
-}
-
 .alert {
   font-size: 1rem;
 }
@@ -472,14 +430,6 @@ footer#footer .container.row {
   background: rgba(8, 14, 27, 0.86);
   color: var(--docs-text);
   padding: 0.75rem 0.9rem;
-}
-
-.pull-right {
-  margin-left: auto;
-}
-
-footer#footer .pull-right {
-  margin-left: 0;
 }
 
 .avatar {

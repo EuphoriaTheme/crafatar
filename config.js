@@ -111,10 +111,6 @@ var config = {
     // public base URL used in docs/examples (e.g. https://crafatar.com)
     external_url: (process.env.EXTERNAL_URL || "").trim()
   },
-  sponsor: {
-    sidebar: process.env.SPONSOR_SIDE,
-    top_right: process.env.SPONSOR_TOP_RIGHT
-  },
 };
 
 module.exports = config;
