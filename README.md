@@ -39,7 +39,7 @@ Set `EXTERNAL_URL` in your `.env` if you are self-hosting under a different doma
 ```sh
 docker network create crafatar
 docker run --net crafatar -d --name redis redis
-docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_URL=redis://redis -p 3000:3000 ghcr.io/<owner>/<repo>:latest
+docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_URL=redis://redis -p 3000:3000 docker.io/repgraphics/crafatar:latest
 ```
 
 By default, Docker builds now skip tests for faster production builds. To run tests during build:
