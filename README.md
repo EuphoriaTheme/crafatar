@@ -42,6 +42,20 @@ docker run --net crafatar -d --name redis redis
 docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_URL=redis://redis -p 3000:3000 docker.io/repgraphics/crafatar:latest
 ```
 
+### Windows (Docker Desktop)
+
+- Use Docker Desktop with **Linux containers** enabled (WSL2 backend recommended).
+- This image is Linux-based (`node:alpine`) and is **not** a Windows container image.
+
+PowerShell quick start:
+
+```powershell
+Copy-Item .env.example .env
+docker compose up -d
+```
+
+Then open `http://localhost:3000`.
+
 By default, Docker builds now skip tests for faster production builds. To run tests during build:
 
 ```sh
