@@ -45,7 +45,7 @@ docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_
 ### Windows (Docker Desktop)
 
 - Use Docker Desktop with **Linux containers** enabled (WSL2 backend recommended).
-- This image is Linux-based (`node:alpine`) and is **not** a Windows container image.
+- This image is Linux-based and is **not** a Windows container image.
 
 PowerShell quick start:
 
