@@ -55,5 +55,5 @@ COPY --chown=app:app lib/ lib/
 
 VOLUME /home/app/crafatar/images
 ENV NODE_ENV production
-ENTRYPOINT ["node", "www.js"]
+CMD ["node", "www.js"]
 EXPOSE 3000

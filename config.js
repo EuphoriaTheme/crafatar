@@ -98,7 +98,7 @@ var config = {
   redis_enabled: redisConfig.enabled,
   server: {
     // port to listen on
-    port: envInt("PORT", 3000),
+    port: envInt("PORT", envInt("SERVER_PORT", 3000)),
     // IP address to listen on
     bind: process.env.BIND || "0.0.0.0",
     // ms until connection to Mojang is dropped
