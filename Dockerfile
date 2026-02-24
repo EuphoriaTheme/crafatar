@@ -1,6 +1,6 @@
-FROM node:24-alpine AS builder
+FROM node:24-alpine3.22 AS builder
 
-RUN apk --no-cache add git python3 build-base redis cairo-dev pango-dev jpeg-dev giflib-dev
+RUN apk --no-cache upgrade && apk --no-cache add git python3 build-base redis cairo-dev pango-dev jpeg-dev giflib-dev
 
 RUN adduser -D app
 USER app
@@ -19,8 +19,10 @@ RUN if [ "$RUN_TESTS" = "true" ]; then nohup redis-server & npm test; fi
 RUN npm prune --omit=dev
 
 
-FROM node:24-alpine
-RUN apk --no-cache add cairo pango jpeg giflib
+FROM node:24-alpine3.22
+RUN apk --no-cache upgrade && apk --no-cache add cairo pango jpeg giflib
+# Remove npm tooling from runtime to reduce attack surface and avoid npm-only CVEs.
+RUN rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx /usr/local/bin/corepack
 RUN adduser -D app
 USER app
 RUN mkdir /home/app/crafatar
@@ -33,5 +35,5 @@ COPY --chown=app lib/ lib/
 
 VOLUME /home/app/crafatar/images
 ENV NODE_ENV production
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["node", "www.js"]
 EXPOSE 3000
