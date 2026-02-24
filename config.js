@@ -89,7 +89,9 @@ var config = {
     // Maximum age in days for cache/image retention
     retention_days: envInt("RETENTION_DAYS", 30),
     // Interval in hours between cleanup runs
-    retention_interval_hours: envInt("RETENTION_INTERVAL_HOURS", 24)
+    retention_interval_hours: envInt("RETENTION_INTERVAL_HOURS", 24),
+    // Cache backend: redis, memory, or none
+    backend: (process.env.CACHE_BACKEND || "redis").trim().toLowerCase()
   },
   // URL of your redis server
   redis: redisConfig.url,
@@ -108,7 +110,7 @@ var config = {
     // rate limit per second for outgoing requests to the Mojang session server
     // requests exceeding this limit are skipped and considered failed
     sessions_rate_limit: envInt("SESSIONS_RATE_LIMIT", NaN),
-    // public base URL used in docs/examples (e.g. https://crafatar.com)
+    // public base URL used in docs/examples (e.g. https://crafatar.euphoriadevelopment.uk/)
     external_url: (process.env.EXTERNAL_URL || "").trim()
   },
 };

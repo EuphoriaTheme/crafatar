@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node www.js",
-    "test": "mocha",
+    "test": "npm run test:ci",
+    "test:ci": "mocha test/ci.test.js",
+    "test:integration": "mocha test/test.js",
     "audit": "npm audit --package-lock-only",
     "audit:fix": "npm audit fix --package-lock-only"
   },

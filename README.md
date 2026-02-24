@@ -8,12 +8,6 @@ Inspired by <a href="https://gravatar.com">Gravatar</a> (hence the name) and <a 
 
 Image manipulation is done with [pngjs](https://github.com/pngjs/pngjs) (pure JavaScript PNG processing). 3D renders are created with [node-canvas](https://github.com/Automattic/node-canvas) / [cairo](http://cairographics.org/).
 
-# Contributions welcome!
-
-There are usually a few [open issues](https://github.com/EuphoriaTheme/crafatar/issues).  
-We welcome any opinions or advice in discussions as well as pull requests.  
-Issues tagged with [![help wanted](https://i.imgur.com/kkozGKY.png "help wanted")](https://github.com/EuphoriaTheme/crafatar/labels/help%20wanted) show where we could especially need your help!
-
 # Examples
 
 | | | | |
@@ -26,6 +20,7 @@ Issues tagged with [![help wanted](https://i.imgur.com/kkozGKY.png "help wanted"
 ## Usage / Documentation
 
 Please [visit the website](https://crafatar.euphoriadevelopment.uk/) for details.
+Our [Main Site](https://euphoriadevelopment.uk/docs/) with docs for all our products.
 
 ## Contact
 
@@ -34,7 +29,7 @@ Please [visit the website](https://crafatar.euphoriadevelopment.uk/) for details
 
 # Installation
 
-## Docker
+## Docker (Untested 23/02/2026)
 
 ```sh
 docker network create crafatar
@@ -54,6 +49,7 @@ This repository includes workers in `.github/workflows`:
 
 - `ci.yml`: runs tests on pushes and pull requests.
 - `release.yml`: on tag push (for example `v2.3.0`) it builds/pushes Docker image to `ghcr.io/<owner>/<repo>` and creates a GitHub Release.
+- `integration.yml`: optional full integration suite (manual trigger + daily schedule).
 
 Create a release:
 
@@ -63,6 +59,12 @@ git push origin v2.3.0
 ```
 
 The release worker will publish the image tag and generate release notes automatically.
+
+Run full integration tests manually from GitHub Actions (workflow_dispatch) or locally:
+
+```sh
+npm run test:integration
+```
 
 ## Manual
 
@@ -94,6 +96,7 @@ cp .env.example .env
 - `RETENTION_ENABLED`: when `true`, periodically clears stale Redis keys and old image files.
 - `RETENTION_DAYS`: maximum age (in days) before cached data/images are deleted.
 - `RETENTION_INTERVAL_HOURS`: how often the cleanup job runs.
+- `CACHE_BACKEND`: metadata cache backend (`redis`, `memory`, or `none`).
 - `EPHEMERAL_STORAGE`: when `true`, Redis is flushed on startup.
 - `CLOUDFLARE`: toggles Cloudflare status hints on the index page.
 - `REDIS_URL`: Redis connection string.
@@ -109,10 +112,16 @@ cp .env.example .env
 - `SESSIONS_RATE_LIMIT`: outgoing Mojang session requests allowed per second; empty disables this limiter.
 - `FACE_DIR`, `HELM_DIR`, `SKIN_DIR`, `RENDER_DIR`, `CAPE_DIR`: optional custom storage directories (must end with `/`).
 
+### Cache backend notes
+
+- `CACHE_BACKEND=redis` (default): uses Redis for metadata cache.
+- `CACHE_BACKEND=memory`: uses in-process memory cache (no Redis required; cache resets on restart).
+- `CACHE_BACKEND=none`: disables metadata caching entirely.
+
 ### Redis behavior notes
 
 - Redis is used as a cache layer; image generation still works when Redis is unavailable.
-- Invalid `REDIS_URL` values (wrong protocol/format) disable Redis caching at startup.
+- Invalid `REDIS_URL` values (wrong protocol/format) fall back to memory cache unless `CACHE_BACKEND=none`.
 - A broken Redis endpoint will reduce cache efficiency and may increase upstream Mojang requests.
 
 ## Pterodactyl notes

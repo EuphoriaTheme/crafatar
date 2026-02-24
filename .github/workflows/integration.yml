@@ -1,19 +1,17 @@
-name: CI
+name: Integration Tests
 
 on:
-  push:
-    branches:
-      - main
-      - master
-  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
 
 permissions:
   contents: read
 
 jobs:
-  test:
+  integration:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     services:
       redis:
@@ -28,6 +26,7 @@ jobs:
 
     env:
       REDIS_URL: redis://127.0.0.1:6379
+      CACHE_BACKEND: redis
       BIND: 127.0.0.1
       PORT: 3000
 
@@ -55,5 +54,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm run test:ci
+      - name: Run integration suite
+        run: npm run test:integration
