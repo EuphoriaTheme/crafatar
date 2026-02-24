@@ -1,4 +1,4 @@
-FROM node:24-bookworm-slim AS builder
+FROM node:25-bookworm-slim AS builder
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -32,7 +32,7 @@ RUN if [ "$RUN_TESTS" = "true" ]; then redis-server --save "" --appendonly no & 
 RUN npm prune --omit=dev
 
 
-FROM node:24-bookworm-slim
+FROM node:25-bookworm-slim
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     libcairo2 \
