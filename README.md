@@ -1,7 +1,9 @@
 # Crafatar
 <img alt="logo" src="lib/public/logo.png" align="right" width="128px" height="128px">
 
-[![travis](https://img.shields.io/travis/EuphoriaTheme/crafatar/master.svg?style=flat-square)](https://travis-ci.org/EuphoriaTheme/crafatar/) [![Coverage Status](https://img.shields.io/coveralls/EuphoriaTheme/crafatar.svg?style=flat-square)](https://coveralls.io/r/EuphoriaTheme/crafatar) [![Code Climate](https://img.shields.io/codeclimate/github/EuphoriaTheme/crafatar.svg?style=flat-square)](https://codeclimate.com/github/EuphoriaTheme/crafatar) [![dependency status](https://img.shields.io/david/EuphoriaTheme/crafatar.svg?style=flat-square)](https://david-dm.org/EuphoriaTheme/crafatar) [![devDependency status](https://img.shields.io/david/dev/EuphoriaTheme/crafatar.svg?style=flat-square)](https://david-dm.org/EuphoriaTheme/crafatar#info=devDependencies) [![docs status](https://inch-ci.org/github/EuphoriaTheme/crafatar.svg?branch=master&style=flat-square)](https://inch-ci.org/github/EuphoriaTheme/crafatar)
+[![CI](https://img.shields.io/github/actions/workflow/status/EuphoriaTheme/crafatar/ci.yml?style=flat-square&label=ci)](https://github.com/EuphoriaTheme/crafatar/actions/workflows/ci.yml) [![Integration](https://img.shields.io/github/actions/workflow/status/EuphoriaTheme/crafatar/integration.yml?style=flat-square&label=integration)](https://github.com/EuphoriaTheme/crafatar/actions/workflows/integration.yml) [![Release](https://img.shields.io/github/actions/workflow/status/EuphoriaTheme/crafatar/release.yml?style=flat-square&label=release)](https://github.com/EuphoriaTheme/crafatar/actions/workflows/release.yml) [![Node](https://img.shields.io/badge/node-%3E%3D24-339933?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/) [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
+
+Maintained by Rep Graphics.
 
 <a href="https://crafatar.euphoriadevelopment.uk/">Crafatar</a> serves Minecraft avatars based on the skin for use in external applications.
 Inspired by <a href="https://gravatar.com">Gravatar</a> (hence the name) and <a href="https://minotar.net">Minotar</a>.
@@ -21,9 +23,12 @@ Image manipulation is done with [pngjs](https://github.com/pngjs/pngjs) (pure Ja
 
 Please [visit the website](https://crafatar.euphoriadevelopment.uk/) for details.
 Our [Main Site](https://euphoriadevelopment.uk/docs/) with docs for all our products.
+Set `EXTERNAL_URL` in your `.env` if you are self-hosting under a different domain.
 
 ## Contact
 
+* Website: [crafatar.euphoriadevelopment.uk](https://crafatar.euphoriadevelopment.uk/)
+* Docs: [euphoriadevelopment.uk/docs](https://euphoriadevelopment.uk/docs/)
 * Join our [Discord](https://discord.euphoriadevelopment.uk/)
 * Open an [issue](https://github.com/EuphoriaTheme/crafatar/issues/) on GitHub
 
