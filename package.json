@@ -1,6 +1,6 @@
 {
   "name": "crafatar",
-  "version": "2.2.3",
+  "version": "2.2.5",
   "private": true,
   "scripts": {
     "start": "node www.js",
