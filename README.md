@@ -34,13 +34,18 @@ Set `EXTERNAL_URL` in your `.env` if you are self-hosting under a different doma
 
 # Installation
 
-## Docker (Untested 23/02/2026)
+Choose one setup path below.
+
+## Option 1: Docker Compose
+
+Uses the provided `docker-compose.yml` with Redis and persistent volumes.
 
 ```sh
-docker network create crafatar
-docker run --net crafatar -d --name redis redis
-docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_URL=redis://redis -p 3000:3000 docker.io/repgraphics/crafatar:latest
+cp .env.example .env
+docker compose up -d
 ```
+
+Then open `http://localhost:3000`.
 
 ### Windows (Docker Desktop)
 
@@ -54,9 +59,44 @@ Copy-Item .env.example .env
 docker compose up -d
 ```
 
-Then open `http://localhost:3000`.
+## Option 2: Docker (single commands)
 
-By default, Docker builds now skip tests for faster production builds. To run tests during build:
+```sh
+docker network create crafatar
+docker run --net crafatar -d --name redis redis:7-alpine
+docker run --net crafatar -v crafatar-images:/home/app/crafatar/images -e REDIS_URL=redis://redis:6379 -e CACHE_BACKEND=redis -p 3000:3000 docker.io/repgraphics/crafatar:latest
+```
+
+If you do not want Redis, use memory cache:
+
+```sh
+docker run -v crafatar-images:/home/app/crafatar/images -e CACHE_BACKEND=memory -p 3000:3000 docker.io/repgraphics/crafatar:latest
+```
+
+## Option 3: Source (Node.js)
+
+- Install [nodejs](https://nodejs.org/) 24 (LTS).
+- Install `redis-server` (optional if using `CACHE_BACKEND=memory`).
+- Run `npm ci`.
+  If that fails, it is usually due to `node-canvas` dependencies. Follow [this guide](https://github.com/Automattic/node-canvas/wiki#installation-guides).
+- Copy `.env.example` to `.env` and adjust values.
+- Run `npm start`.
+
+Crafatar is now available at http://0.0.0.0:3000.
+
+## Option 4: Pterodactyl Egg
+
+- Import [`pterodactyl egg/egg-crafatar.json`](pterodactyl%20egg/egg-crafatar.json) into your panel.
+- In the egg Docker Images field use either:
+  - `docker.io/repgraphics/crafatar:latest`
+  - `Docker Hub Crafatar|docker.io/repgraphics/crafatar:latest`
+- Configure the install variables:
+  - `SOURCE_REPO` (default `EuphoriaTheme/crafatar`)
+  - `SOURCE_REF` (default `master`, can also be a tag like `v2.3.2`)
+- Reinstall the server after importing/updating the egg so install scripts run and source files are placed in `/home/container`.
+- Set `REDIS_URL` to an external Redis endpoint if using `CACHE_BACKEND=redis`.
+
+By default, Docker builds skip tests for faster production builds. To run tests during build:
 
 ```sh
 docker build --build-arg RUN_TESTS=true -t crafatar .
@@ -84,17 +124,6 @@ Run full integration tests manually from GitHub Actions (workflow_dispatch) or l
 ```sh
 npm run test:integration
 ```
-
-## Manual
-
-- Install [nodejs](https://nodejs.org/) 24 (LTS)
-- Install `redis-server`
-- Run `npm install`  
-  If that fails, it's likely because because of `node-canvas` dependencies. Follow [this guide](https://github.com/Automattic/node-canvas/wiki#installation-guides) to install them.
-- Copy `.env.example` to `.env` and adjust values if needed
-- Run `npm start`
-
-Crafatar is now available at http://0.0.0.0:3000.
 
 ## Configuration / Environment variables
 
@@ -129,6 +158,8 @@ cp .env.example .env
 - `DEBUG`: when `true`, enables debug behavior and extra error details.
 - `LOG_TIME`: whether log timestamps are enabled.
 - `SESSIONS_RATE_LIMIT`: outgoing Mojang session requests allowed per second; empty disables this limiter.
+- `SOURCE_REPO`: GitHub repo path used by the Pterodactyl egg installer when bootstrapping source files (format `owner/repo`).
+- `SOURCE_REF`: branch or tag used by the Pterodactyl egg installer (for example `master` or `v2.3.2`).
 - `FACE_DIR`, `HELM_DIR`, `SKIN_DIR`, `RENDER_DIR`, `CAPE_DIR`: optional custom storage directories (must end with `/`).
 
 ### Cache backend notes
@@ -146,8 +177,10 @@ cp .env.example .env
 ## Pterodactyl notes
 
 - Set `BIND=0.0.0.0` when running behind panel/reverse proxies.
-- Use an external Redis service or separate Redis node and point `REDIS_URL` to it.
+- Use an external Redis service or separate Redis node and point `REDIS_URL` to it (avoid `localhost` unless Redis is in the same container).
 - `CLOUDFLARE=true` is appropriate when traffic is proxied through Cloudflare.
+- `SOURCE_REPO` and `SOURCE_REF` control which source tree the egg installer downloads to `/home/container`.
+- After egg import/changes, run a server reinstall so the installation script is applied.
 
 ## Security maintenance
 
