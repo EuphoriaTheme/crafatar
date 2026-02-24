@@ -273,6 +273,73 @@ code {
   height: 64px;
   overflow: hidden;
   font-size: 0;
+  white-space: nowrap;
+}
+
+.avatar-picker {
+  padding: 0;
+  line-height: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.avatar-picker:focus-visible {
+  outline: 2px solid rgba(var(--docs-accent-rgb), 0.9);
+  outline-offset: 2px;
+}
+
+.avatar-picker.is-active .avatar {
+  box-shadow: 0 0 0 1px rgba(var(--docs-accent-rgb), 0.55), 0 0 10px rgba(var(--docs-accent-rgb), 0.35);
+}
+
+.avatar-picker .avatar {
+  margin: 0;
+}
+
+.avatar-tooltip {
+  position: fixed;
+  z-index: 1200;
+  padding: 0.34rem 0.62rem;
+  border: 1px solid rgba(var(--docs-accent-rgb), 0.55);
+  border-radius: 10px;
+  background: linear-gradient(150deg, rgba(7, 16, 34, 0.97), rgba(7, 22, 44, 0.97));
+  color: #e8f4ff;
+  font-family: "Space Grotesk", "Segoe UI", Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(3px) scale(0.98);
+  box-shadow: 0 14px 30px rgba(2, 6, 23, 0.55), 0 0 0 1px rgba(148, 163, 184, 0.1) inset;
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.avatar-tooltip.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.avatar-tooltip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+}
+
+.avatar-tooltip[data-placement="top"]::after {
+  top: 100%;
+  border-top-color: rgba(var(--docs-accent-rgb), 0.55);
+}
+
+.avatar-tooltip[data-placement="bottom"]::after {
+  bottom: 100%;
+  border-bottom-color: rgba(var(--docs-accent-rgb), 0.55);
 }
 
 .head-nav {

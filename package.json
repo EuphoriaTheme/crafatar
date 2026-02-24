@@ -1,7 +1,7 @@
 {
   "name": "crafatar",
-  "version": "2.2.8",
-  "private": true,
+  "version": "2.2.9",
+  "private": false,
   "scripts": {
     "start": "node www.js",
     "test": "npm run test:ci",
